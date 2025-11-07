@@ -12,7 +12,7 @@ import {
   WELCOME_TEMPLATE,
 } from "../config/emailTemplates.js";
 
-//Sigup
+// Signup
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -28,35 +28,43 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const user = new userModel({ name, email, password: hashedPassword });
     await user.save();
 
+    // ✅ Create JWT
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
 
+    // ✅ Set cookie
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: true, // Render uses HTTPS
+      sameSite: "None", // Cross-origin cookie
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    //Sending Welcome email
-    const mailOptions = {
-      from: process.env.SENDER_EMAIL,
-      to: email,
-      subject: "Welcome to ARC Studio ✨",
-      //text: `Welcome to ARC Studio. Your account has been created with email id: ${email}`,
-      html: WELCOME_TEMPLATE.replace("{{email}}", user.email),
-    };
+    // ✅ Try sending welcome email — but don’t block the response
+    try {
+      const mailOptions = {
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        subject: "Welcome to ARC Studio ✨",
+        html: WELCOME_TEMPLATE.replace("{{email}}", user.email),
+      };
 
-    await transporter.sendMail(mailOptions);
+      transporter.sendMail(mailOptions).catch((err) => {
+        console.error("Email failed to send:", err.message);
+      });
+    } catch (emailError) {
+      console.error("Email error:", emailError.message);
+    }
 
-    return res.json({ success: true });
+    // ✅ Always respond to frontend, even if email fails
+    return res.json({ success: true, message: "Signup successful!" });
   } catch (error) {
-    res.json({ success: false, message: error.message });
+    console.error("Signup error:", error.message);
+    return res.json({ success: false, message: "Signup failed. Try again." });
   }
 };
 
