@@ -1,25 +1,32 @@
-import nodemailer from "nodemailer";
+import axios from "axios";
 
-const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587, // ✅ Render-safe port
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-  secureConnection: false, // ✅ instead of 'secure'
-  tls: {
-    ciphers: "SSLv3",
-    rejectUnauthorized: false,
-  },
-});
-
-transporter.verify((error, success) => {
-  if (error) {
-    console.log("❌ SMTP Connection Failed:", error.message);
-  } else {
-    console.log("✅ SMTP Server Ready to send mail");
+// ✅ Brevo mail sender using HTTPS API
+const sendMail = async (to, subject, htmlContent) => {
+  try {
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: { email: process.env.SENDER_EMAIL },
+        to: [{ email: to }],
+        subject,
+        htmlContent,
+      },
+      {
+        headers: {
+          "api-key": process.env.BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log("✅ Email sent successfully to:", to);
+    return response.data;
+  } catch (error) {
+    console.error(
+      "❌ Email send failed:",
+      error.response?.data || error.message
+    );
+    throw new Error("Email send failed");
   }
-});
+};
 
-export default transporter;
+export default sendMail;

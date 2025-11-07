@@ -3,7 +3,8 @@ import bcrypt from "bcryptjs";
 //import { JsonWebTokenError } from "jsonwebtoken";
 import jwt from "jsonwebtoken";
 import userModel from "../models/userModel.js";
-import transporter from "../config/nodemailer.js";
+//import transporter from "../config/nodemailer.js";
+import sendMail from "../config/nodemailer.js"; // ✅ updated import
 //import { from } from "form-data";
 import {
   ACCOUNT_VERIFIED_TEMPLATE,
@@ -46,16 +47,11 @@ export const register = async (req, res) => {
 
     // ✅ Try sending welcome email — but don’t block the response
     try {
-      const mailOptions = {
-        from: process.env.SENDER_EMAIL,
-        to: email,
-        subject: "Welcome to ARC Studio ✨",
-        html: WELCOME_TEMPLATE.replace("{{email}}", user.email),
-      };
-
-      transporter.sendMail(mailOptions).catch((err) => {
-        console.error("Email failed to send:", err.message);
-      });
+      await sendMail(
+        email,
+        "Welcome to ARC Studio ✨",
+        WELCOME_TEMPLATE.replace("{{email}}", user.email)
+      );
     } catch (emailError) {
       console.error("Email error:", emailError.message);
     }
@@ -141,18 +137,14 @@ export const sendVerifyOtp = async (req, res) => {
 
     await user.save();
 
-    const mailOption = {
-      from: process.env.SENDER_EMAIL,
-      to: user.email,
-      subject: "Account Verification OTP",
-      //text: `Your OTP is ${otp}. Verify your account using this OTP.`,
-      html: EMAIL_VERIFY_TEMPLATE.replace("{{otp}}", otp).replace(
+    await sendMail(
+      user.email,
+      "Account Verification OTP",
+      EMAIL_VERIFY_TEMPLATE.replace("{{otp}}", otp).replace(
         "{{email}}",
         user.email
-      ),
-    };
-
-    await transporter.sendMail(mailOption);
+      )
+    );
 
     res.json({ success: true, message: "Verification OTP Sent on Email" });
   } catch (error) {
@@ -190,15 +182,11 @@ export const verifyEmail = async (req, res) => {
 
     //send mail that email is verify
 
-    const mailOptiont = {
-      from: process.env.SENDER_EMAIL,
-      to: user.email,
-      subject: "Account Verified 🎉",
-      //text: `Your account is verified`,
-      html: ACCOUNT_VERIFIED_TEMPLATE,
-    };
-
-    await transporter.sendMail(mailOptiont);
+    await sendMail(
+      user.email,
+      "Account Verified 🎉",
+      ACCOUNT_VERIFIED_TEMPLATE
+    );
 
     return res.json({ success: true, message: "Email verified successfully" });
   } catch (error) {
@@ -236,18 +224,14 @@ export const sendResetOtp = async (req, res) => {
 
     await user.save();
 
-    const mailOption = {
-      from: process.env.SENDER_EMAIL,
-      to: user.email,
-      subject: "Password Reset OTP",
-      //text: `Your OTP for resetting your password is ${otp}. Use this OTP to proceed with resetting your password.`,
-      html: PASSWORD_RESET_TEMPLATE.replace("{{otp}}", otp).replace(
+    await sendMail(
+      user.email,
+      "Password Reset OTP",
+      PASSWORD_RESET_TEMPLATE.replace("{{otp}}", otp).replace(
         "{{email}}",
         user.email
-      ),
-    };
-
-    await transporter.sendMail(mailOption);
+      )
+    );
 
     return res.json({ success: true, message: "OTP sent to your email" });
   } catch (error) {
