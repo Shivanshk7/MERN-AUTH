@@ -11,16 +11,22 @@ const app = express();
 const port = process.env.PORT || 4000;
 connectDB();
 
-const allowedOrigins = ["https://mern-auth-frontend-qtwh.onrender.com"];
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "https://mern-auth-frontend-qtwh.onrender.com", // deployed frontend
+];
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://mern-auth-frontend-qtwh.onrender.com", // exact frontend URL
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(new Error("CORS not allowed for this origin: " + origin), false);
+    },
     credentials: true, // allow cookies / tokens
-    //methods: ["GET", "POST", "PUT", "DELETE"],
-    //allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 // API Endpoints
