@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: allowedOrigins, // exact frontend URL
+    origin: "https://mern-auth-frontend-qtwh.onrender.com", // exact frontend URL
     credentials: true, // allow cookies / token
   })
 );
