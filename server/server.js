@@ -20,13 +20,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl)
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
-      return callback(new Error("CORS not allowed for this origin: " + origin), false);
-    },
-    credentials: true, // allow cookies / tokens
+    origin: allowedOrigins,
+    credentials: true, // allow sending cookies
   })
 );
 // API Endpoints
