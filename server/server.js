@@ -11,13 +11,16 @@ const app = express();
 const port = process.env.PORT || 4000;
 connectDB();
 
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://mern-auth-frontend-qtwh.onrender.com",
+];
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173", // exact frontend URL
+    origin: allowedOrigins, // exact frontend URL
     credentials: true, // allow cookies / tokens
     //methods: ["GET", "POST", "PUT", "DELETE"],
     //allowedHeaders: ["Content-Type", "Authorization"],
