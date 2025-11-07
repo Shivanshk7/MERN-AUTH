@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// ✅ Brevo mail sender using HTTPS API
 const sendMail = async (to, subject, htmlContent) => {
   try {
+    console.log("📤 Sending email to:", to);
     const response = await axios.post(
       "https://api.brevo.com/v3/smtp/email",
       {
@@ -18,14 +18,13 @@ const sendMail = async (to, subject, htmlContent) => {
         },
       }
     );
-    console.log("✅ Email sent successfully to:", to);
+    console.log("✅ Email sent successfully:", response.data);
     return response.data;
   } catch (error) {
     console.error(
       "❌ Email send failed:",
       error.response?.data || error.message
     );
-    throw new Error("Email send failed");
   }
 };
 
