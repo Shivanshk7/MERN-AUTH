@@ -58,7 +58,7 @@ export const register = async (req, res) => {
     }
 
     // ✅ Always respond to frontend, even if email fails
-    return res.json({ success: true, message: "Signup successful!" });
+    return res.json({ success: true, message: "Signup successful!", token });
   } catch (error) {
     console.error("Signup error:", error.message);
     return res.json({ success: false, message: "Signup failed. Try again." });
@@ -100,7 +100,7 @@ export const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.json({ success: true });
+    return res.json({ success: true, token });
   } catch (error) {
     return res.json({ success: false, message: error.message });
   }

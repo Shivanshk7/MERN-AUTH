@@ -31,6 +31,9 @@ const Login = () => {
       const { data } = await axios.post(url, body, { withCredentials: true });
 
       if (data.success) {
+        if (data.token) {
+          localStorage.setItem("token", data.token); // ✅ Safari fix
+        }
         setIsLoggedin(true);
         getUserData();
         navigate("/");
