@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/mongodb.js";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
-//import sendMail from "./config/nodemailer.js"; // make sure path is correct
+//import sendMail from "./config/nodemailer.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -17,7 +17,7 @@ const allowedOrigins = [
   "https://mern-auth-frontend-qtwh.onrender.com", // deployed frontend
 ];
 
-// ✅ Fix Render proxy behavior (important for Safari cookies)
+//(important for Safari cookies)
 app.set("trust proxy", 1);
 
 app.use((req, res, next) => {
@@ -52,18 +52,17 @@ app.get("/", (req, res) => res.send("API Working"));
 app.use("/api/auth", authRouter);
 //console.log("Auth routes loaded!"); //dfghjgfc
 
-// Test route to verify router loading
 //app.get("/api/auth/test", (req, res) => {
 //  res.send("Auth router is working!");
 //});
 app.use("/api/user", userRouter);
 
-import sendMail from "./config/nodemailer.js"; // make sure path is correct
+import sendMail from "./config/nodemailer.js";
 
 app.get("/test-mail", async (req, res) => {
   try {
     await sendMail(
-      "yourEmail@gmail.com", // apna actual Gmail id daal
+      "shivanshkushwaha0007@gmail.com", // personal email
       "Render Mail Test",
       "<h2>Mail working perfectly 🚀</h2>"
     );

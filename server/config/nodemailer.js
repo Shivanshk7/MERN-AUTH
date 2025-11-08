@@ -2,10 +2,10 @@ import axios from "axios";
 
 const sendMail = async (to, subject, htmlContent) => {
   try {
-    console.log("📤 Sending email to:", to);
+    console.log("Sending email to:", to);
     console.log(
       "🔑 BREVO_API_KEY:",
-      process.env.BREVO_API_KEY ? "Loaded ✅" : "Missing ❌"
+      process.env.BREVO_API_KEY ? "Loaded" : "Missing"
     );
     console.log("📧 SENDER_EMAIL:", process.env.SENDER_EMAIL);
 
@@ -29,10 +29,10 @@ const sendMail = async (to, subject, htmlContent) => {
       }
     );
 
-    console.log("✅ Email sent successfully:", response.data);
+    console.log("Email sent successfully:", response.data);
     return response.data;
   } catch (error) {
-    console.error("❌ Email send failed:");
+    console.error("Email send failed:");
     console.error("Status:", error.response?.status);
     console.error("Data:", error.response?.data);
     console.error("Message:", error.message);

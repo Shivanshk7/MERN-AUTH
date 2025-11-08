@@ -299,7 +299,7 @@ export const WELCOME_TEMPLATE = `
         <p>Hello,</p>
         <p>We’re thrilled to have you onboard!</p>
         <p>Your account has been successfully created with the email ID: <span class="highlight">{{email}}</span>.</p>
-        <a href="https://arcstudio.com" class="button">Explore Dashboard</a>
+        <a href="https://mern-auth-frontend-qtwh.onrender.com" class="button">Explore Dashboard</a>
       </div>
       <div class="footer">
         <p>© 2025 ARC Studio | All Rights Reserved</p>
@@ -399,7 +399,7 @@ export const ACCOUNT_VERIFIED_TEMPLATE = `
         <p>Hello,</p>
         <p>Your ARC Studio account has been successfully <span class="highlight">verified</span>.</p>
         <p>Welcome to the creative space — you can now access all premium features and tools.</p>
-        <a href="https://arcstudio.com" class="button">Go to Dashboard</a>
+        <a href="https://mern-auth-frontend-qtwh.onrender.com" class="button">Go to Dashboard</a>
       </div>
       <div class="footer">
         <p>© 2025 ARC Studio | All Rights Reserved</p>

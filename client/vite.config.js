@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://mean-auth-backend.onrender.com", // 👈 your backend Render URL
+        target: "https://mean-auth-backend.onrender.com", //your backend Render URL
         changeOrigin: true,
         secure: true,
       },

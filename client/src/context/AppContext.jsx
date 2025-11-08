@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 export const AppContent = createContext();
 
-// ✅ ADD THIS INTERCEPTOR BLOCK RIGHT HERE
+//INTERCEPTOR BLOCK RIGHT HERE
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -51,7 +51,7 @@ export const AppContextProvider = (props) => {
     getAuthState();
   }, []);
 
-  // ✅ prevent infinite re-render
+  //prevent infinite re-render
 
   const value = {
     backendUrl,
