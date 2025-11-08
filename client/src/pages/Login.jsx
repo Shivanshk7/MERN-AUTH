@@ -18,7 +18,7 @@ const Login = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      axios.defaults.withCredentials = true;
+      //axios.defaults.withCredentials = true;
 
       const url =
         state === "Sign Up"
