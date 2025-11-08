@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/mongodb.js";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
+import sendMail from "./config/nodemailer.js"; // make sure path is correct
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -18,6 +19,21 @@ const allowedOrigins = [
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://mern-auth-frontend-qtwh.onrender.com"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
+
 app.use(
   cors({
     origin: [
@@ -31,7 +47,8 @@ app.use(
 app.get("/", (req, res) => res.send("API Working"));
 app.use("/api/auth", authRouter);
 //console.log("Auth routes loaded!"); //dfghjgfc
-// ✅ Test route to verify router loading
+
+// Test route to verify router loading
 //app.get("/api/auth/test", (req, res) => {
 //  res.send("Auth router is working!");
 //});
@@ -43,13 +60,13 @@ app.get("/test-mail", async (req, res) => {
   try {
     await sendMail(
       "yourEmail@gmail.com", // apna actual Gmail id daal
-      "Render Mail Test ✅",
+      "Render Mail Test",
       "<h2>Mail working perfectly 🚀</h2>"
     );
-    res.send("✅ Mail sent successfully");
+    res.send("Mail sent successfully");
   } catch (err) {
-    console.error("❌ Mail send failed:", err.response?.data || err.message);
-    res.status(500).send("❌ Mail failed");
+    console.error("Mail send failed:", err.response?.data || err.message);
+    res.status(500).send("Mail failed");
   }
 });
 
