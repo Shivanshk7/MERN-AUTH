@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/mongodb.js";
 import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
-import sendMail from "./config/nodemailer.js"; // make sure path is correct
+//import sendMail from "./config/nodemailer.js"; // make sure path is correct
 
 const app = express();
 const port = process.env.PORT || 4000;
