@@ -42,6 +42,7 @@ export const register = async (req, res) => {
       httpOnly: true,
       secure: true, // Render uses HTTPS
       sameSite: "None", // Cross-origin cookie
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -95,6 +96,7 @@ export const login = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "None",
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 

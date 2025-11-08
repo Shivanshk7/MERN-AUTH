@@ -17,8 +17,8 @@ const allowedOrigins = [
   "https://mern-auth-frontend-qtwh.onrender.com", // deployed frontend
 ];
 
-app.use(express.json());
-app.use(cookieParser());
+// ✅ Fix Render proxy behavior (important for Safari cookies)
+app.set("trust proxy", 1);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
@@ -43,6 +43,10 @@ app.use(
     credentials: true, // allow cookies / token
   })
 );
+
+app.use(express.json());
+app.use(cookieParser());
+
 // API Endpoints
 app.get("/", (req, res) => res.send("API Working"));
 app.use("/api/auth", authRouter);
