@@ -46,12 +46,20 @@ const Navbar = () => {
     try {
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(backendUrl + "/api/auth/logout");
+
       if (data.success) {
+        // ✅ clear React auth state
         setIsLoggedin(false);
         setUserData(false);
-        navigate("/");
+
+        // ✅ clear token if stored (for Safari / mobile safety)
+        localStorage.removeItem("token");
+
+        // ✅ full reload to reset context
+        window.location.href = "/";
+      } else {
+        toast.error(data.message);
       }
-      setMenuOpen(false);
     } catch (error) {
       toast.error(error.message);
     }
