@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import AppContent from "../context/AppContext.jsx";
@@ -9,6 +9,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { userData, backendUrl, setUserData, setIsLoggedin } =
     useContext(AppContent);
+
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const sendVerificationOtp = async () => {
     try {
@@ -39,35 +41,48 @@ const Navbar = () => {
     }
   };
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0">
       <img src={assets.arc} alt="" className="w-28 sm:w-32" />
       {userData ? (
-        <div className="relative group" onClick={toggleMenu}>
-          <div className="w-8 h-8 flex justify-center items-center rounded-full bg-black text-white relative group">
+        <div
+          className="relative group"
+          onClick={toggleMenu} // 👈 tap on mobile opens menu
+        >
+          <div className="w-8 h-8 flex justify-center items-center rounded-full bg-black text-white cursor-pointer select-none">
             {userData.name[0].toUpperCase()}
-            <div
-              className={`absolute top-0 right-0 z-10 text-black rounded pt-10 ${
-                menuOpen ? "block" : "hidden"
-              } group-hover:block`}
-            >
-              <ul className="list-none m-0 p-2 bg-gray-100 text-sm">
-                {!userData.isAccountVerified && (
-                  <li
-                    onClick={sendVerificationOtp}
-                    className="py-1 px-2 hover:bg-gray-200 cursor-pointer"
-                  >
-                    Verify email
-                  </li>
-                )}
+          </div>
+
+          {/* Dropdown */}
+          <div
+            className={`absolute top-0 right-0 z-10 text-black rounded pt-10 ${
+              menuOpen ? "block" : "hidden"
+            } group-hover:block`} // 👈 hover (laptop) + tap (mobile)
+          >
+            <ul className="list-none m-0 p-2 bg-gray-100 text-sm rounded shadow-md">
+              {!userData.isAccountVerified && (
                 <li
-                  onClick={logout}
-                  className="py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10"
+                  onClick={() => {
+                    sendVerificationOtp();
+                    setMenuOpen(false);
+                  }}
+                  className="py-1 px-3 hover:bg-gray-200 cursor-pointer"
                 >
-                  Logout
+                  Verify email
                 </li>
-              </ul>
-            </div>
+              )}
+              <li
+                onClick={() => {
+                  logout();
+                  setMenuOpen(false);
+                }}
+                className="py-1 px-3 hover:bg-gray-200 cursor-pointer"
+              >
+                Logout
+              </li>
+            </ul>
           </div>
         </div>
       ) : (
