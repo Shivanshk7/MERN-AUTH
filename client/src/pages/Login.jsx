@@ -21,9 +21,7 @@ const Login = () => {
       //axios.defaults.withCredentials = true;
 
       const url =
-        state === "Sign Up"
-          ? `${backendUrl}/api/auth/register`
-          : `${backendUrl}/api/auth/login`;
+        state === "Sign Up" ? "/api/auth/register" : "/api/auth/login";
 
       const body =
         state === "Sign Up" ? { name, email, password } : { email, password };
