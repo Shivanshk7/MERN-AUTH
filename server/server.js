@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://mern-auth-frontend-qtwh.onrender.com", // exact frontend URL
+    origin: allowedOrigins, // exact frontend URL
     credentials: true, // allow cookies / token
   })
 );
@@ -33,5 +33,21 @@ app.use("/api/auth", authRouter);
 //  res.send("Auth router is working!");
 //});
 app.use("/api/user", userRouter);
+
+import sendMail from "./config/nodemailer.js"; // make sure path is correct
+
+app.get("/test-mail", async (req, res) => {
+  try {
+    await sendMail(
+      "yourEmail@gmail.com", // apna actual Gmail id daal
+      "Render Mail Test ✅",
+      "<h2>Mail working perfectly 🚀</h2>"
+    );
+    res.send("✅ Mail sent successfully");
+  } catch (err) {
+    console.error("❌ Mail send failed:", err.response?.data || err.message);
+    res.status(500).send("❌ Mail failed");
+  }
+});
 
 app.listen(port, () => console.log(`Server started on PORT:${port}`));
