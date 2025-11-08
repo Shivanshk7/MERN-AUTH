@@ -13,7 +13,9 @@ const Navbar = () => {
   const sendVerificationOtp = async () => {
     try {
       axios.defaults.withCredentials = true;
-      const { data } = await axios.post("/api/auth/send-verify-otp");
+      const { data } = await axios.post(
+        backendUrl + "/api/auth/send-verify-otp"
+      );
       if (data.success) {
         navigate("/email-verify");
         toast.success(data.message);
@@ -28,7 +30,7 @@ const Navbar = () => {
   const logout = async () => {
     try {
       axios.defaults.withCredentials = true;
-      const { data } = await axios.post("/api/auth/logout");
+      const { data } = await axios.post(backendUrl + "/api/auth/logout");
       data.success && setIsLoggedin(false);
       data.success && setUserData(false);
       navigate("/");
