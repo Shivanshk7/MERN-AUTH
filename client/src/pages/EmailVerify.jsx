@@ -82,7 +82,7 @@ const EmailVerify = () => {
         initial={{ opacity: 0, scale: 0.9, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-[380px] sm:max-w-[420px] bg-[#101010]/80 border border-[#2E2E2E] px-8 sm:px-10 py-10 sm:py-12 text-white shadow-[0_0_50px_rgba(158,92,243,0.15)] backdrop-blur-md rounded-2xl"
+        className="relative z-10 w-full max-w-[380px] sm:max-w-[420px] bg-[#101010]/80 border border-[#2E2E2E] px-8 sm:px-10 py-10 sm:py-12 text-white shadow-[0_0_50px_rgba(158,92,243,0.15)] backdrop-blur-md"
       >
         <form onSubmit={onSubmitHandler} className="space-y-5">
           <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-3">
