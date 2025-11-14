@@ -52,20 +52,14 @@ const Dashboard = () => {
 
   // protect route
   useEffect(() => {
-    // 1️⃣ If NOT logged in → Login
-    if (!isLoggedin) {
-      navigate("/login");
-      return;
+    if (!(isLoggedin && userData?.isAccountVerified)) {
+      navigate("/");
     }
-
-    // 2️⃣ Logged in but NOT verified → Email Verify
-    if (isLoggedin && !userData?.isAccountVerified) {
-      navigate("/email-verify");
-      return;
-    }
-
-    // 3️⃣ Logged in AND Verified → Stay on Dashboard
+    //{/**hjs */}
   }, [isLoggedin, userData, navigate]);
+  {
+    /* hj* */
+  }
 
   // logo click
   const handleLogoClick = () => {
