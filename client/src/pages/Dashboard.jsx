@@ -112,11 +112,22 @@ const Dashboard = () => {
       />
 
       {/* --- PAGE HEADER --- */}
+
       <motion.div
         className="relative z-10 text-center mb-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
+        {/* LOGO */}
+        <motion.img
+          onClick={handleLogoClick}
+          src="/arc.svg"
+          alt="logo"
+          className="absolute left-6 sm:left-12 top-6 w-24 sm:w-28 md:w-32 cursor-pointer drop-shadow-[0_0_25px_rgba(158,92,243,0.8)]"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        />
         <h1 className="text-4xl sm:text-5xl font-semibold bg-gradient-to-r from-[#9E5CF3] to-[#02F0FF] text-transparent bg-clip-text">
           ARC Studio Dashboard
         </h1>
