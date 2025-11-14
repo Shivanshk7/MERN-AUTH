@@ -71,7 +71,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="relative min-h-screen text-white px-6 sm:px-12 py-24 overflow-hidden">
+    <div className="relative min-h-screen text-white px-6 sm:px-12 pt-16 pb-24 overflow-hidden">
       {/* LOGO */}
       {/*<motion.img
         onClick={handleLogoClick}
@@ -114,7 +114,7 @@ const Dashboard = () => {
       {/* --- PAGE HEADER --- */}
 
       <motion.div
-        className="relative z-10 text-center mb-10"
+        className="relative z-10 text-center mb-8"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -123,7 +123,7 @@ const Dashboard = () => {
           onClick={handleLogoClick}
           src="/arc.svg"
           alt="logo"
-          className="mx-auto w-32 h-32 mb-6 cursor-pointer drop-shadow-[0_0_35px_rgba(158,92,243,0.7)] hover:scale-105 transition-all duration-300"
+          className="mx-auto w-36 h-36 mb-4 cursor-pointer drop-shadow-[0_0_35px_rgba(158,92,243,0.7)] hover:scale-105 transition-all duration-300"
           initial={{ opacity: 0, y: -25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
