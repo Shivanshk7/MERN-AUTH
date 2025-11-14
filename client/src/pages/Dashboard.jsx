@@ -65,7 +65,7 @@ const Dashboard = () => {
     }
 
     // 3️⃣ Logged in AND Verified → Stay on Dashboard
-  }, [isLoggedin, userData]);
+  }, [isLoggedin, userData, navigate]);
 
   // logo click
   const handleLogoClick = () => {

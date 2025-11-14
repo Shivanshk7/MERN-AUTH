@@ -51,7 +51,7 @@ const EmailVerify = () => {
 
   useEffect(() => {
     if (isLoggedin && userData?.isAccountVerified) navigate("/");
-  }, [isLoggedin, userData]);
+  }, [isLoggedin, userData, navigate]);
 
   return (
     <div className="relative flex items-center justify-center min-h-screen overflow-hidden px-6 sm:px-10 md:px-8">
