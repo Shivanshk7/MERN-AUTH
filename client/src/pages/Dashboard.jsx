@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useContext, useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import wall1 from "../assets/wallpapers/wall1.png";
 import wall2 from "../assets/wallpapers/wall2.png";
@@ -46,40 +46,43 @@ const Dashboard = () => {
 
   const posters = [poster1, poster2, poster3, poster4, poster5, poster6];
 
-  const handleDownload = (img) => {
-    const link = document.createElement("a");
-    link.href = img;
-    link.download = "image.png";
-    link.click();
-  };
+  // selected image
+  const [selectedImage, setSelectedImage] = useState(wallpapers[0]);
+  const [activeTab, setActiveTab] = useState("wallpapers");
 
-  // 🔒 Protect Route
+  // protect route
   useEffect(() => {
     if (!(isLoggedin && userData?.isAccountVerified)) {
       navigate("/login");
     }
-  }, [isLoggedin, userData, navigate]);
+  }, [isLoggedin, userData]);
 
-  // Logo click
+  // logo click
   const handleLogoClick = () => {
     if (isLoggedin && userData?.isAccountVerified) navigate("/");
   };
 
+  // download
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = selectedImage;
+    link.download = "image.png";
+    link.click();
+  };
+
   return (
-    <div className="relative min-h-screen text-white px-6 pt-32 pb-20 overflow-hidden">
-      {/* Logo */}
+    <div className="relative min-h-screen text-white px-6 sm:px-12 py-24 overflow-hidden">
+      {/* LOGO */}
       <motion.img
         onClick={handleLogoClick}
         src={assets.arc}
         alt="logo"
         className="absolute left-6 sm:left-12 top-6 w-24 sm:w-28 md:w-32 cursor-pointer drop-shadow-[0_0_25px_rgba(158,92,243,0.8)]"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+        initial={{ opacity: 0, y: -20 }}
       />
 
-      {/* Background same as Home */}
-      <div className="absolute inset-0 bg-[#0A0A0A]"></div>
+      {/* --- BACKGROUND LAYERS (same home theme) --- */}
+      <div className="absolute inset-0 bg-[#0A0A0A]" />
 
       <div
         className="absolute inset-0"
@@ -88,82 +91,123 @@ const Dashboard = () => {
             "linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
         }}
-      ></div>
+      />
 
       <div
         className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full blur-[160px] opacity-60"
         style={{
           background:
-            "radial-gradient(circle, rgba(0,255,200,0.7) 0%, rgba(0,255,200,0) 70%)",
+            "radial-gradient(circle, rgba(0,255,200,0.5) 0%, rgba(0,255,200,0) 70%)",
         }}
-      ></div>
+      />
 
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(120deg, rgba(255,0,150,0.4) 0%, rgba(0,100,255,0.4) 50%, rgba(0,255,200,0.4) 100%)",
+            "linear-gradient(120deg, rgba(255,0,150,0.35) 0%, rgba(0,100,255,0.35) 50%, rgba(0,255,200,0.35) 100%)",
         }}
-      ></div>
+      />
 
-      {/* Main Content */}
-      <div className="relative z-10">
-        <h1 className="text-4xl font-bold mb-6">Dashboard</h1>
-
-        <p className="text-white/80 mb-10">
-          Explore high-quality wallpapers & posters crafted for ARC Studio
-          users.
+      {/* --- PAGE HEADER --- */}
+      <motion.div
+        className="relative z-10 text-center mb-10"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <h1 className="text-4xl sm:text-5xl font-semibold bg-gradient-to-r from-[#9E5CF3] to-[#02F0FF] text-transparent bg-clip-text">
+          ARC Studio Dashboard
+        </h1>
+        <p className="text-gray-300 mt-2">
+          Preview & Download Wallpapers and Posters
         </p>
+      </motion.div>
 
-        {/* Wallpapers */}
-        <h2 className="text-2xl font-semibold mb-4">Wallpapers</h2>
+      {/* --- MAIN LAYOUT: LEFT PREVIEW + RIGHT LIST --- */}
+      <div className="relative z-10 flex flex-col lg:flex-row gap-10">
+        {/* LEFT: SELECTED IMAGE PREVIEW */}
+        <motion.div
+          className="flex-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={selectedImage}
+              src={selectedImage}
+              className="w-full rounded-xl object-cover shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+            />
+          </AnimatePresence>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {wallpapers.map((img, i) => (
-            <motion.div
-              key={i}
-              className="bg-white/10 p-3 rounded-lg backdrop-blur-md border border-white/10 hover:border-white/20 transition"
-              whileHover={{ scale: 1.03 }}
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={handleDownload}
+            className="w-full mt-6 py-3 bg-gradient-to-r from-[#9E5CF3] via-[#02F0FF] to-[#FF914D] text-black font-semibold tracking-wide rounded-lg shadow-[0_0_15px_rgba(158,92,243,0.4)] hover:shadow-[0_0_25px_rgba(158,92,243,0.6)] transition-all duration-300"
+          >
+            Download
+          </motion.button>
+        </motion.div>
+
+        {/* RIGHT: WALLPAPERS / POSTERS LIST */}
+        <motion.div
+          className="lg:w-[350px] bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_0_25px_rgba(255,255,255,0.1)] overflow-hidden h-fit"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+        >
+          {/* Tabs */}
+          <div className="flex">
+            <button
+              className={`flex-1 py-3 ${
+                activeTab === "wallpapers"
+                  ? "bg-[#02F0FF]/20 text-[#02F0FF] font-semibold"
+                  : "text-gray-300"
+              }`}
+              onClick={() => setActiveTab("wallpapers")}
             >
-              <img
-                src={img}
-                alt=""
-                className="w-full h-48 object-cover rounded-md mb-3"
-              />
-              <button
-                onClick={() => handleDownload(img)}
-                className="w-full bg-white text-black py-2 rounded hover:bg-transparent hover:text-white border border-white transition"
-              >
-                Download
-              </button>
-            </motion.div>
-          ))}
-        </div>
+              Wallpapers
+            </button>
 
-        {/* Posters */}
-        <h2 className="text-2xl font-semibold mb-4">Posters</h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posters.map((img, i) => (
-            <motion.div
-              key={i}
-              className="bg-white/10 p-3 rounded-lg backdrop-blur-md border border-white/10 hover:border-white/20 transition"
-              whileHover={{ scale: 1.03 }}
+            <button
+              className={`flex-1 py-3 ${
+                activeTab === "posters"
+                  ? "bg-[#9E5CF3]/20 text-[#9E5CF3] font-semibold"
+                  : "text-gray-300"
+              }`}
+              onClick={() => setActiveTab("posters")}
             >
-              <img
-                src={img}
-                alt=""
-                className="w-full h-48 object-cover rounded-md mb-3"
-              />
-              <button
-                onClick={() => handleDownload(img)}
-                className="w-full bg-white text-black py-2 rounded hover:bg-transparent hover:text-white border border-white transition"
-              >
-                Download
-              </button>
-            </motion.div>
-          ))}
-        </div>
+              Posters
+            </button>
+          </div>
+
+          {/* LIST */}
+          <div className="divide-y divide-white/10">
+            {(activeTab === "wallpapers" ? wallpapers : posters).map(
+              (img, i) => (
+                <motion.div
+                  key={i}
+                  onClick={() => setSelectedImage(img)}
+                  whileHover={{ scale: 1.02 }}
+                  className="p-3 cursor-pointer hover:bg-white/10 transition flex items-center gap-3"
+                >
+                  <img
+                    src={img}
+                    className="w-16 h-16 object-cover rounded-md"
+                  />
+                  <p className="text-gray-200 text-sm">
+                    {activeTab === "wallpapers"
+                      ? `Wallpaper ${i + 1}`
+                      : `Poster ${i + 1}`}
+                  </p>
+                </motion.div>
+              )
+            )}
+          </div>
+        </motion.div>
       </div>
     </div>
   );
