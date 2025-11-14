@@ -23,7 +23,7 @@ import poster6 from "../assets/posters/poster6.png";
 
 import AppContent from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { assets } from "../assets/assets.js";
+//import { assets } from "../assets/assets.js";
 
 const Dashboard = () => {
   const { userData, isLoggedin } = useContext(AppContent);
@@ -75,7 +75,7 @@ const Dashboard = () => {
       {/* LOGO */}
       <motion.img
         onClick={handleLogoClick}
-        src={assets.arc}
+        src="/arc.svg"
         alt="logo"
         className="absolute left-6 sm:left-12 top-6 w-24 sm:w-28 md:w-32 cursor-pointer drop-shadow-[0_0_25px_rgba(158,92,243,0.8)]"
         initial={{ opacity: 0, y: -20 }}
