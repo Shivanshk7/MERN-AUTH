@@ -71,7 +71,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="relative min-h-screen text-white px-6 sm:px-12 pt-16 pb-24 overflow-hidden">
+    <div className="relative min-h-screen text-white px-6 sm:px-12 pt-8 pb-24 overflow-hidden">
       {/* LOGO */}
       {/*<motion.img
         onClick={handleLogoClick}
@@ -111,23 +111,25 @@ const Dashboard = () => {
         }}
       />
 
+      {/* up */}
+      {/* LOGO */}
+      <motion.img
+        onClick={handleLogoClick}
+        src="/arc.svg"
+        alt="logo"
+        className="mx-auto w-36 h-36 mb-4 cursor-pointer drop-shadow-[0_0_35px_rgba(158,92,243,0.7)] hover:scale-105 transition-all duration-300"
+        initial={{ opacity: 0, y: -25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      />
+
       {/* --- PAGE HEADER --- */}
 
       <motion.div
-        className="relative z-10 text-center mb-8"
+        className="relative z-10 text-center mb-8 mt-0"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        {/* LOGO */}
-        <motion.img
-          onClick={handleLogoClick}
-          src="/arc.svg"
-          alt="logo"
-          className="mx-auto w-36 h-36 mb-4 cursor-pointer drop-shadow-[0_0_35px_rgba(158,92,243,0.7)] hover:scale-105 transition-all duration-300"
-          initial={{ opacity: 0, y: -25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        />
         <h1 className="text-4xl sm:text-5xl font-semibold bg-gradient-to-r from-[#9E5CF3] to-[#02F0FF] text-transparent bg-clip-text">
           ARC Studio Dashboard
         </h1>
