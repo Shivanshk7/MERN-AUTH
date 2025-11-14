@@ -53,11 +53,15 @@ const Dashboard = () => {
   // protect route
   useEffect(() => {
     // 1️⃣ If NOT logged in → Login
-    if (!(isLoggedin && userData?.isAccountVerified)) {
+    if (!isLoggedin) {
       navigate("/login");
-      {
-        /* not */
-      }
+      return;
+    }
+
+    // 2️⃣ Logged in but NOT verified → Email Verify
+    if (isLoggedin && !userData?.isAccountVerified) {
+      navigate("/email-verify");
+      return;
     }
 
     // 3️⃣ Logged in AND Verified → Stay on Dashboard
