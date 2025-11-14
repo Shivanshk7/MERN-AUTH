@@ -2,9 +2,47 @@ import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { assets } from "../assets/assets";
 import AppContent from "../context/AppContext.jsx";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { userData } = useContext(AppContent);
+  const { userData, isLoggedin, backendUrl } = useContext(AppContent);
+  const navigate = useNavigate();
+
+  //const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+  const handleExploreClick = async () => {
+    // 1️⃣ If not logged in → Login
+    if (!isLoggedin) {
+      return navigate("/login");
+    }
+
+    // 2️⃣ Logged in BUT not verified → send OTP + go to email-verify
+    if (isLoggedin && !userData?.isAccountVerified) {
+      try {
+        axios.defaults.withCredentials = true;
+        const { data } = await axios.post(
+          backendUrl + "/api/auth/send-verify-otp"
+        );
+
+        if (data.success) {
+          toast.success(data.message);
+          navigate("/email-verify");
+        } else {
+          toast.error(data.message);
+        }
+      } catch (error) {
+        toast.error(error.message);
+      }
+      return;
+    }
+
+    // 3️⃣ Logged in + Verified → Dashboard
+    if (isLoggedin && userData?.isAccountVerified) {
+      return navigate("/dashboard");
+    }
+  };
 
   return (
     <div className="flex flex-col items-center mt-20 px-4 text-center text-white overflow-hidden">
@@ -57,6 +95,7 @@ const Header = () => {
 
       {/* Button */}
       <motion.button
+        onClick={handleExploreClick}
         className="border border-white text-black bg-white px-8 py-2.5 transition-all hover:bg-transparent hover:text-white"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
