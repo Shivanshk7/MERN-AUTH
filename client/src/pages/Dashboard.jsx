@@ -23,7 +23,7 @@ import poster6 from "../assets/posters/poster6.png";
 
 import AppContent from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { assets } from "../assets/assets";
+import { assets } from "../assets/assets.js";
 
 const Dashboard = () => {
   const { userData, isLoggedin } = useContext(AppContent);
