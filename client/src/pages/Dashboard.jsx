@@ -73,7 +73,7 @@ const Dashboard = () => {
   return (
     <div className="relative min-h-screen text-white px-6 sm:px-12 py-24 overflow-hidden">
       {/* LOGO */}
-      <motion.img
+      {/*<motion.img
         onClick={handleLogoClick}
         src="/arc.svg"
         alt="logo"
@@ -81,7 +81,7 @@ const Dashboard = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-      />
+  />*/}
 
       {/* --- BACKGROUND LAYERS (same home theme) --- */}
       <div className="absolute inset-0 bg-[#0A0A0A]" />
@@ -123,7 +123,7 @@ const Dashboard = () => {
           onClick={handleLogoClick}
           src="/arc.svg"
           alt="logo"
-          className="absolute left-6 sm:left-12 top-6 w-24 sm:w-28 md:w-32 cursor-pointer drop-shadow-[0_0_25px_rgba(158,92,243,0.8)]"
+          className="mx-auto w-28 h-28 mb-5 cursor-pointer drop-shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
