@@ -57,10 +57,7 @@ const Dashboard = () => {
     }
     //{/**hjs */}
   }, [isLoggedin, userData, navigate]);
-  {
-    /* hj* */
-  }
-
+  //dfg
   // logo click
   const handleLogoClick = () => {
     if (isLoggedin && userData?.isAccountVerified) navigate("/");
