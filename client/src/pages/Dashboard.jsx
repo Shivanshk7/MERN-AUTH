@@ -123,8 +123,8 @@ const Dashboard = () => {
           onClick={handleLogoClick}
           src="/arc.svg"
           alt="logo"
-          className="mx-auto w-28 h-28 mb-5 cursor-pointer drop-shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-105 transition-all duration-300"
-          initial={{ opacity: 0, y: -20 }}
+          className="mx-auto w-32 h-32 mb-6 cursor-pointer drop-shadow-[0_0_35px_rgba(158,92,243,0.7)] hover:scale-105 transition-all duration-300"
+          initial={{ opacity: 0, y: -25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         />
