@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (!(isLoggedin && userData?.isAccountVerified)) {
+    if (isLoggedin && userData?.isAccountVerified) {
       navigate("/");
     }
   }, [isLoggedin, userData, navigate]);
