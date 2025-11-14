@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,8 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { backendUrl, setIsLoggedin, getUserData } = useContext(AppContent);
+  const { backendUrl, setIsLoggedin, getUserData, userData } =
+    useContext(AppContent);
 
   const [state, setState] = useState("Login");
   const [name, setName] = useState("");
@@ -42,6 +43,12 @@ const Login = () => {
       toast.error(err.message);
     }
   };
+
+  useEffect(() => {
+    if (!(isLoggedin && userData?.isAccountVerified)) {
+      navigate("/");
+    }
+  }, [isLoggedin, userData, navigate]);
 
   return (
     <div className="relative flex items-center justify-center min-h-screen overflow-hidden px-6 sm:px-10 md:px-8">
