@@ -180,114 +180,128 @@ const Navbar = () => {
           </button>
         )}
       </div>
-
-      {/* 🟣 PROFILE SLIDE PANEL — ARC STUDIO NEON UI */}
+      {/* 🟣 PROFILE SLIDE PANEL — ARC STUDIO PREMIUM UI */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 sm:w-[420px] bg-black/80 backdrop-blur-xl border-l border-cyan-400/40 p-7 z-50 transform transition-transform duration-300 shadow-[0_0_25px_rgba(0,255,255,0.35)] ${
+        className={`fixed top-0 right-0 h-full w-80 sm:w-[420px] bg-[#0A0A0A]/95 backdrop-blur-xl border-l border-[#2E2E2E] p-7 z-50 transform transition-transform duration-300 shadow-[0_0_60px_rgba(158,92,243,0.2)] ${
           profileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+        {/* Grid Lines Background */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:40px_40px] opacity-10"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:40px_40px] opacity-10"></div>
+
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold text-cyan-300">Edit Profile</h2>
+        <div className="flex items-center justify-between mb-8 relative z-10">
+          <h2 className="text-3xl font-semibold text-white tracking-tight drop-shadow-[0_0_10px_rgba(158,92,243,0.8)]">
+            Edit Profile
+          </h2>
           <button
             onClick={() => setProfileOpen(false)}
-            className="text-gray-300 hover:text-white text-2xl"
+            className="text-gray-300 hover:text-white text-2xl transition"
           >
             ✕
           </button>
         </div>
 
-        {/* FORM */}
-        <div className="space-y-4 text-white">
-          {/* First Name */}
-          <div>
-            <label className="text-sm text-gray-300 ml-1">First Name</label>
-            <input
-              type="text"
-              className="w-full p-2.5 bg-black/40 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400 transition"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-          </div>
-
-          {/* Last Name */}
-          <div>
-            <label className="text-sm text-gray-300 ml-1">Last Name</label>
-            <input
-              type="text"
-              className="w-full p-2.5 bg-black/40 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400 transition"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
-          </div>
-
-          {/* Age */}
-          <div>
-            <label className="text-sm text-gray-300 ml-1">Age</label>
-            <input
-              type="number"
-              className="w-full p-2.5 bg-black/40 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400 transition"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-          </div>
+        {/* FORM CONTAINER */}
+        <div className="relative z-10 space-y-6">
+          {/* Input Group */}
+          {[
+            {
+              label: "First Name",
+              value: firstName,
+              handler: setFirstName,
+            },
+            {
+              label: "Last Name",
+              value: lastName,
+              handler: setLastName,
+            },
+            {
+              label: "Age",
+              type: "number",
+              value: age,
+              handler: setAge,
+            },
+          ].map((field, idx) => (
+            <div key={idx} className="space-y-1">
+              <label className="text-xs text-gray-300 tracking-wide ml-1">
+                {field.label}
+              </label>
+              <div className="flex items-center gap-3 px-4 py-3 bg-[#1C1C1C]/70 border border-[#2E2E2E] rounded-lg focus-within:border-[#02F0FF] transition">
+                <input
+                  type={field.type || "text"}
+                  value={field.value}
+                  onChange={(e) => field.handler(e.target.value)}
+                  className="w-full bg-transparent outline-none text-gray-200 text-sm placeholder-gray-500"
+                />
+              </div>
+              {/*for a change */}
+            </div>
+          ))}
 
           {/* Gender */}
-          <div>
-            <label className="text-sm text-gray-300 ml-1">Gender</label>
-            <select
-              className="w-full p-2.5 bg-black/40 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400 transition"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
+          <div className="space-y-1">
+            <label className="text-xs text-gray-300 ml-1">Gender</label>
+            <div className="flex items-center gap-3 px-4 py-3 bg-[#1C1C1C]/70 border border-[#2E2E2E] rounded-lg focus-within:border-[#9E5CF3] transition">
+              <select
+                //for a change
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className="w-full bg-transparent outline-none text-gray-200 text-sm"
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
           </div>
 
           {/* Profession */}
-          <div>
-            <label className="text-sm text-gray-300 ml-1">Profession</label>
-            <select
-              className="w-full p-2.5 bg-black/40 border border-cyan-400/30 rounded-lg text-white focus:border-cyan-400 transition"
-              value={profession}
-              onChange={(e) => setProfession(e.target.value)}
-            >
-              <option value="">Profession</option>
-              <option value="student">Student</option>
-              <option value="employee">Employee</option>
-            </select>
+          <div className="space-y-1">
+            <label className="text-xs text-gray-300 ml-1">Profession</label>
+            <div className="flex items-center gap-3 px-4 py-3 bg-[#1C1C1C]/70 border border-[#2E2E2E] rounded-lg focus-within:border-[#FF914D] transition">
+              <select
+                //for a change
+                value={profession}
+                onChange={(e) => setProfession(e.target.value)}
+                className="w-full bg-transparent outline-none text-gray-200 text-sm"
+              >
+                <option value="">Select Profession</option>
+                <option value="student">Student</option>
+                <option value="employee">Employee</option>
+              </select>
+            </div>
           </div>
 
           {/* Bio */}
-          <div>
-            <label className="text-sm text-gray-300 ml-1">Bio</label>
+          <div className="space-y-1">
+            <label className="text-xs text-gray-300 ml-1">Bio</label>
             <textarea
               placeholder="Tell us about yourself…"
-              className="w-full p-3 bg-black/40 border border-cyan-400/30 rounded-lg text-white h-28 resize-none focus:border-cyan-400 transition"
+              className="w-full h-28 px-4 py-3 bg-[#1C1C1C]/70 border border-[#2E2E2E] rounded-lg text-gray-200 text-sm resize-none focus:border-[#02F0FF] transition"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-            />
-            <div className="text-right text-xs text-gray-400 mt-1">
+            ></textarea>
+            <p className="text-right text-[11px] text-gray-400">
               {bio.length}/150
-            </div>
+            </p>
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="mt-6 flex justify-between">
+        {/* BUTTONS */}
+        <div className="relative z-10 mt-8 flex justify-between">
           <button
             onClick={() => setProfileOpen(false)}
-            className="px-5 py-2.5 border border-gray-500 text-gray-300 rounded-lg hover:bg-gray-800 transition"
+            className="px-6 py-2.5 border border-gray-500 text-gray-300 rounded-lg hover:bg-[#1A1A1A] transition"
           >
             Cancel
           </button>
+
           <button
             onClick={updateUserProfile}
-            className="px-5 py-2.5 bg-cyan-400 text-black rounded-lg font-semibold shadow-[0_0_15px_rgba(0,255,255,0.5)] hover:bg-cyan-300 transition"
+            className="px-6 py-2.5 bg-gradient-to-r from-[#9E5CF3] via-[#02F0FF] to-[#FF914D] text-black font-semibold rounded-lg shadow-[0_0_15px_rgba(158,92,243,0.4)] hover:shadow-[0_0_25px_rgba(158,92,243,0.7)] transition-all"
           >
             Save
           </button>
