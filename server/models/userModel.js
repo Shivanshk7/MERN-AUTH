@@ -3,6 +3,16 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
+
+  // NEW FIELDS
+  firstName: { type: String, default: "" },
+  lastName: { type: String, default: "" },
+  age: { type: Number, default: null },
+  gender: { type: String, default: "" }, // male, female, other
+  profession: { type: String, default: "" }, // student, employee
+
+  bio: { type: String, default: "" }, // ← NEW FIELD
+
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   verifyOtp: { type: String, default: "" },
