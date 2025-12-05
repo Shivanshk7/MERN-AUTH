@@ -45,7 +45,7 @@ const Header = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-60 px-4 text-center text-white overflow-hidden">
+    <div className="flex flex-col items-center mt-70 px-4 text-center text-white overflow-hidden">
       {/* Avatar with smooth zoom-in */}
       <motion.img
         src={assets.avatar_icon}
