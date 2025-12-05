@@ -110,7 +110,13 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 z-50">
+      <div
+        className={`w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 sticky top-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? "backdrop-blur-xl bg-black/80 shadow-lg"
+            : "bg-transparent"
+        }`}
+      >
         <img
           src={assets.arc}
           alt="logo"
