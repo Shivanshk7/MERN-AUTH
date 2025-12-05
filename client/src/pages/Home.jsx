@@ -81,7 +81,7 @@ const Home = () => {
         </motion.div>
 
         {/* Header below navbar */}
-        <div className="flex items-center justify-center pt-32 sm:pt-40 pb-20">
+        <div className="flex items-center justify-center min-h-screen sm:pt-32 pt-24">
           <Header />
         </div>
         {/* White Section Wrapper */}
