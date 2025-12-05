@@ -13,24 +13,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
 
-  // 👇 Hide Navbar on Scroll Logic
-  const [showNavbar, setShowNavbar] = useState(true);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const controlNavbar = () => {
-      if (window.scrollY > lastScrollY.current) {
-        setShowNavbar(false); // scrolling down -> hide
-      } else {
-        setShowNavbar(true); // scrolling up -> show
-      }
-      lastScrollY.current = window.scrollY;
-    };
-
-    window.addEventListener("scroll", controlNavbar);
-    return () => window.removeEventListener("scroll", controlNavbar);
-  }, []);
-
+  //nsdgsd
   // 🔵 NEW STATES FOR PROFILE PANEL
   const [profileOpen, setProfileOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -128,13 +111,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div
-        className={`w-full flex justify-between items-center
-    p-4 sm:p-6 sm:px-24 sticky top-0 z-50
-    transition-transform duration-500
-    ${showNavbar ? "translate-y-0" : "-translate-y-full"}
-  `}
-      >
+      <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 z-50">
         <img
           src={assets.arc}
           alt="logo"
