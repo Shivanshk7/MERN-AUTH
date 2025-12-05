@@ -81,7 +81,7 @@ const Home = () => {
         </motion.div>
 
         {/* Header below navbar */}
-        <div className="pt-0">
+        <div className="pt-0 mt-26 mb-26">
           <Header />
         </div>
         <FeaturesSection />
