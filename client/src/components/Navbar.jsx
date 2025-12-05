@@ -13,6 +13,17 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
 
+  // 🔥 Scroll Navbar Background Change
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // 🔵 NEW STATES FOR PROFILE PANEL
   const [profileOpen, setProfileOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
