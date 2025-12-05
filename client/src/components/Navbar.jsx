@@ -13,15 +13,22 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
 
-  // 🔥 Scroll Navbar Background Change
-  const [isScrolled, setIsScrolled] = useState(false);
+  // 👇 Hide Navbar on Scroll Logic
+  const [showNavbar, setShowNavbar] = useState(true);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const controlNavbar = () => {
+      if (window.scrollY > lastScrollY.current) {
+        setShowNavbar(false); // scrolling down -> hide
+      } else {
+        setShowNavbar(true); // scrolling up -> show
+      }
+      lastScrollY.current = window.scrollY;
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", controlNavbar);
+    return () => window.removeEventListener("scroll", controlNavbar);
   }, []);
 
   // 🔵 NEW STATES FOR PROFILE PANEL
@@ -122,11 +129,11 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 sticky top-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "backdrop-blur-xl bg-black/80 shadow-lg"
-            : "bg-transparent"
-        }`}
+        className={`w-full flex justify-between items-center
+    p-4 sm:p-6 sm:px-24 sticky top-0 z-50
+    transition-transform duration-500
+    ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+  `}
       >
         <img
           src={assets.arc}
