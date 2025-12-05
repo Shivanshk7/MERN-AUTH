@@ -2,8 +2,22 @@ import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
+import FeaturesSection from "../components/home/FeaturesSection";
+import TrendingSection from "../components/home/TrendingSection";
+import HowItWorksSection from "../components/home/HowItWorksSection";
+import AboutSection from "../components/home/AboutSection";
+import Footer from "../components/home/Footer";
 
 const Home = () => {
+  // ❌ Disable Right Click Download
+  useEffect(() => {
+    const handler = (e) => e.preventDefault();
+    document.addEventListener("contextmenu", handler);
+    return () => {
+      document.removeEventListener("contextmenu", handler);
+    };
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
       {/* Base black background */}
@@ -70,6 +84,11 @@ const Home = () => {
         <div className="pt-0">
           <Header />
         </div>
+        <FeaturesSection />
+        <TrendingSection />
+        <HowItWorksSection />
+        <AboutSection />
+        <Footer />
       </div>
     </div>
   );
