@@ -84,10 +84,19 @@ const Home = () => {
         <div className="pt-0 mt-26 mb-26">
           <Header />
         </div>
-        <FeaturesSection />
-        <TrendingSection />
-        <HowItWorksSection />
-        <AboutSection />
+        {/* White Section Wrapper */}
+        <div className="relative bg-white text-black z-20 mt-32 pt-12 rounded-t-2xl">
+          {/* Smooth Fade Top */}
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-white/90"></div>
+
+          {/* New Sections */}
+          <FeaturesSection />
+          <TrendingSection />
+          <HowItWorksSection />
+          <AboutSection />
+        </div>
+
+        {/* Footer Dark Return */}
         <Footer />
       </div>
     </div>
