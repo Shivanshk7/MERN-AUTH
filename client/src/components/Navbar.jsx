@@ -13,7 +13,6 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef();
 
-  //nsdgsd
   // 🔵 NEW STATES FOR PROFILE PANEL
   const [profileOpen, setProfileOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
