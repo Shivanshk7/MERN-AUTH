@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
@@ -7,7 +7,6 @@ import TrendingSection from "../components/TrendingSection.jsx";
 import HowItWorksSection from "../components/HowItWorksSection.jsx";
 import AboutSection from "../components/AboutSection.jsx";
 import Footer from "../components/Footer.jsx";
-import React, { useEffect } from "react";
 
 const Home = () => {
   // ❌ Disable Right Click Download
