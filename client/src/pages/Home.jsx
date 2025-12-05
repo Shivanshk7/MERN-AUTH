@@ -2,11 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
-import FeaturesSection from "../components/FeaturesSection";
-import TrendingSection from "../components/TrendingSection";
-import HowItWorksSection from "../components/HowItWorksSection";
-import AboutSection from "../components/AboutSection";
-import Footer from "../components/Footer";
+import FeaturesSection from "../components/FeaturesSection.jsx";
+import TrendingSection from "../components/TrendingSection.jsx";
+import HowItWorksSection from "../components/HowItWorksSection.jsx";
+import AboutSection from "../components/AboutSection.jsx";
+import Footer from "../components/Footer.jsx";
+import React, { useEffect } from "react";
 
 const Home = () => {
   // ❌ Disable Right Click Download
