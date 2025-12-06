@@ -3,27 +3,25 @@ import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import FeaturesSection from "../components/FeaturesSection.jsx";
-//yiod
+//sfghj
 import HowItWorksSection from "../components/HowItWorksSection.jsx";
 import AboutSection from "../components/AboutSection.jsx";
 import Footer from "../components/Footer.jsx";
 
 const Home = () => {
-  // ❌ Disable Right Click Download
+  //svhj
   useEffect(() => {
     const handler = (e) => e.preventDefault();
     document.addEventListener("contextmenu", handler);
-    return () => {
-      document.removeEventListener("contextmenu", handler);
-    };
+    return () => document.removeEventListener("contextmenu", handler);
   }, []);
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
-      {/* Base black background */}
+      {/* 🔥 HERO + DARK BACKGROUND (global till About Section) */}
       <div className="absolute inset-0 bg-[#0A0A0A]" />
 
-      {/* Subtle grid lines */}
+      {/*hudih*/}
       <div
         className="absolute inset-0"
         style={{
@@ -33,7 +31,7 @@ const Home = () => {
         }}
       ></div>
 
-      {/* Glowing radial light */}
+      {/*hudih*/}
       <div
         className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full blur-[160px] opacity-60"
         style={{
@@ -42,7 +40,7 @@ const Home = () => {
         }}
       ></div>
 
-      {/* Gradient overlay */}
+      {/*hudih*/}
       <div
         className="absolute inset-0"
         style={{
@@ -51,7 +49,7 @@ const Home = () => {
         }}
       ></div>
 
-      {/* Bottom dark fade */}
+      {/*hudih*/}
       <div
         className="absolute inset-0"
         style={{
@@ -60,17 +58,14 @@ const Home = () => {
         }}
       ></div>
 
-      {/* Floating boxes and light dots */}
+      {/* Floating elements */}
       <div className="absolute left-[15%] top-[30%] w-[80px] h-[80px] border border-gray-200/20 rounded-sm rotate-6"></div>
       <div className="absolute right-[20%] bottom-[25%] w-[100px] h-[100px] border border-gray-200/20 rounded-sm -rotate-12"></div>
       <div className="absolute right-[10%] bottom-[35%] w-3 h-3 rounded-full bg-cyan-300 opacity-90 shadow-[0_0_20px_rgba(0,255,200,0.8)]"></div>
 
-      {/* Softer bottom white fade */}
-      {/* Softer bottom white fade */}
-
-      {/* Main content */}
+      {/* CONTENT */}
       <div className="relative z-10 w-full">
-        {/* 🧭 Navbar with motion */}
+        {/* NAVBAR */}
         <motion.div
           className="absolute top-0 left-0 right-0 z-30"
           initial={{ opacity: 0, y: -50 }}
@@ -80,23 +75,28 @@ const Home = () => {
           <Navbar />
         </motion.div>
 
-        {/* Header below navbar */}
+        {/* HEADER SECTION */}
         <div className="flex items-center justify-center min-h-screen sm:pt-32 pt-24">
           <Header />
         </div>
-        {/* White Section Wrapper */}
-        <div className="relative bg-white text-black z-20 pt-12 rounded-t-2xl">
-          {/* Smooth Fade Top */}
-          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-white/90"></div>
 
-          {/* New Sections */}
+        {/*hudih*/}
+
+        {/* ⭐ WHITE FEATURE SECTION */}
+        <div className="relative bg-white text-black z-20 pt-16 pb-24 rounded-t-2xl">
           <FeaturesSection />
-          {/* New Sections */}
+        </div>
+
+        {/* 🔥 CONTINUE DARK THEME AGAIN */}
+        <div className="relative text-white z-20 py-24">
           <HowItWorksSection />
+        </div>
+
+        <div className="relative text-white z-20 py-24">
           <AboutSection />
         </div>
 
-        {/* Footer Dark Return */}
+        {/* FOOTER (DARK) */}
         <Footer />
       </div>
     </div>
