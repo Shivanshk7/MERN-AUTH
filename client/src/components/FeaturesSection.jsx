@@ -22,9 +22,11 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="relative z-20 py-24 text-center px-6 bg-white">
+    <section className="relative z-20 py-20 sm:py-24 text-center px-6 bg-white">
       <motion.h2
-        className="text-4xl font-semibold text-black mb-16"
+        className="text-4xl font-semibold mb-16
+        bg-gradient-to-r from-[#9E5CF3] to-[#02AEEE]
+        bg-clip-text text-transparent"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -36,7 +38,9 @@ const FeaturesSection = () => {
         {features.map((item, i) => (
           <motion.div
             key={i}
-            className="p-6 rounded-2xl bg-white border border-gray-200 shadow-lg hover:shadow-2xl transition cursor-pointer"
+            className="p-6 rounded-2xl bg-white border border-gray-200
+            shadow-lg hover:shadow-2xl hover:border-black/10
+            hover:scale-[1.03] transition-all cursor-pointer"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: i * 0.2 }}
