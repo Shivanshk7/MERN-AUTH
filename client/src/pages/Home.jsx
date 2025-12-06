@@ -92,7 +92,7 @@ const Home = () => {
           <HowItWorksSection />
         </div>
 
-        <div className="relative text-white z-20 py-24">
+        <div className="relative bg-white text-black z-20 pt-16 pb-24 rounded-t-2xl">
           <AboutSection />
         </div>
 
