@@ -72,7 +72,7 @@ const Home = () => {
       <div className="relative z-10 w-full">
         {/* 🧭 Navbar with motion */}
         <motion.div
-          className="fixed top-0 left-0 right-0 z-30"
+          className="absolute top-0 left-0 right-0 z-30"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
