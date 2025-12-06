@@ -1,11 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Brush, Award, Users } from "lucide-react";
 
 const AboutSection = () => {
   return (
-    <section className="relative z-20 py-28 px-6 text-center text-white">
+    <section className="w-full text-black py-20 px-6 text-center bg-white">
+      {/* Heading */}
       <motion.h2
-        className="text-4xl font-semibold mb-6"
+        className="text-4xl sm:text-5xl font-bold mb-6"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -13,16 +15,62 @@ const AboutSection = () => {
         About ARC Studio ✨
       </motion.h2>
 
+      {/* Sub Text */}
       <motion.p
-        className="max-w-2xl mx-auto text-lg text-white/80 leading-relaxed"
-        initial={{ opacity: 0, y: 30 }}
+        className="max-w-2xl mx-auto text-gray-700 text-lg leading-relaxed mb-14"
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        ARC Studio is a smart creative platform where designing becomes fast,
-        fun and effortless! We are on a mission to make every creator look
-        professional — without needing advanced design skills.
+        ARC Studio is a modern digital playground for creators worldwide. From
+        artists to entrepreneurs — anyone can create stunning posters and
+        wallpapers in just a few clicks. No professional design skills required!
       </motion.p>
+
+      {/* Icons Features Set */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        {/* 1️⃣ */}
+        <motion.div
+          className="p-6 bg-white rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.07)] border border-gray-200 hover:shadow-lg transition"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Brush size={38} className="mx-auto mb-4 text-[#9E5CF3]" />
+          <h3 className="font-bold text-xl mb-2">Creativity for All</h3>
+          <p className="text-gray-600 text-sm">
+            We simplify design so every idea can turn into art.
+          </p>
+        </motion.div>
+
+        {/* 2️⃣ */}
+        <motion.div
+          className="p-6 bg-white rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.07)] border border-gray-200 hover:shadow-lg transition"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Users size={38} className="mx-auto mb-4 text-[#02AEEE]" />
+          <h3 className="font-bold text-xl mb-2">Community First</h3>
+          <p className="text-gray-600 text-sm">
+            Connect, share and be inspired by other modern creators.
+          </p>
+        </motion.div>
+
+        {/* 3️⃣ */}
+        <motion.div
+          className="p-6 bg-white rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.07)] border border-gray-200 hover:shadow-lg transition"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <Award size={38} className="mx-auto mb-4 text-[#FF914D]" />
+          <h3 className="font-bold text-xl mb-2">Premium Quality</h3>
+          <p className="text-gray-600 text-sm">
+            Download sharp, high-resolution artwork every single time.
+          </p>
+        </motion.div>
+      </div>
     </section>
   );
 };
