@@ -38,7 +38,7 @@ const AboutSection = () => {
         >
           <Brush
             size={42}
-            className="mx-auto mb-4 text-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.6)]"
+            className="mx-auto mb-4 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.5)]"
           />
           <h3 className="font-bold text-xl mb-2">Creativity for All</h3>
           <p className="text-gray-600 text-sm">
@@ -55,7 +55,7 @@ const AboutSection = () => {
         >
           <Users
             size={42}
-            className="mx-auto mb-4 text-cyan-300 drop-shadow-[0_0_10px_rgba(0,200,255,0.6)]"
+            className="mx-auto mb-4 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.5)]"
           />
           <h3 className="font-bold text-xl mb-2">Community First</h3>
           <p className="text-gray-600 text-sm">
@@ -72,7 +72,7 @@ const AboutSection = () => {
         >
           <Award
             size={42}
-            className="mx-auto mb-4 text-cyan-200 drop-shadow-[0_0_10px_rgba(0,255,200,0.6)]"
+            className="mx-auto mb-4 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.5)]"
           />
           <h3 className="font-bold text-xl mb-2">Premium Quality</h3>
           <p className="text-gray-600 text-sm">
