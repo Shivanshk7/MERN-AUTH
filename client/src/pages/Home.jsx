@@ -66,8 +66,7 @@ const Home = () => {
       <div className="absolute right-[10%] bottom-[35%] w-3 h-3 rounded-full bg-cyan-300 opacity-90 shadow-[0_0_20px_rgba(0,255,200,0.8)]"></div>
 
       {/* Softer bottom white fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-[120px] bg-gradient-to-t from-white/40 to-transparent backdrop-blur-[1px]"></div>
-
+      {/* Softer bottom white fade */}
       {/* Main content */}
       <div className="relative z-10 w-full">
         {/* 🧭 Navbar with motion */}
