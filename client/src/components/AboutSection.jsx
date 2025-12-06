@@ -36,7 +36,10 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Brush size={38} className="mx-auto mb-4 text-[#9E5CF3]" />
+          <Brush
+            size={42}
+            className="mx-auto mb-4 text-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.6)]"
+          />
           <h3 className="font-bold text-xl mb-2">Creativity for All</h3>
           <p className="text-gray-600 text-sm">
             We simplify design so every idea can turn into art.
@@ -50,7 +53,10 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Users size={38} className="mx-auto mb-4 text-[#02AEEE]" />
+          <Users
+            size={42}
+            className="mx-auto mb-4 text-cyan-300 drop-shadow-[0_0_10px_rgba(0,200,255,0.6)]"
+          />
           <h3 className="font-bold text-xl mb-2">Community First</h3>
           <p className="text-gray-600 text-sm">
             Connect, share and be inspired by other modern creators.
@@ -64,7 +70,10 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Award size={38} className="mx-auto mb-4 text-[#FF914D]" />
+          <Award
+            size={42}
+            className="mx-auto mb-4 text-cyan-200 drop-shadow-[0_0_10px_rgba(0,255,200,0.6)]"
+          />
           <h3 className="font-bold text-xl mb-2">Premium Quality</h3>
           <p className="text-gray-600 text-sm">
             Download sharp, high-resolution artwork every single time.
